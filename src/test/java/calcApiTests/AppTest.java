@@ -1,24 +1,23 @@
 package calcApiTests;
 
-import static io.restassured.RestAssured.*;
-import static io.restassured.parsing.Parser.*;
-import static org.junit.Assert.assertEquals;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import org.junit.runner.RunWith;
-
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
+
+import static io.restassured.RestAssured.*;
+import static io.restassured.parsing.Parser.*;
+
+import static org.junit.Assert.assertEquals;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 @RunWith(DataProviderRunner.class)
 public class AppTest {
 
     @DataProvider
     public static Object[][] resultsOperatorsOperands() {
-        String errorText = "unsupported operation";
+        final String errorText = "unsupported operation";
         return new Object[][] {
             // @formatter:off
             // Results are passed first
@@ -93,14 +92,14 @@ public class AppTest {
 
     @Test
     @UseDataProvider("resultsOperatorsOperands")
-    public void appTestMain(String expectedResult, String... args) {
+    public void appTestMain(final String expectedResult, final String... operatorsOperands) {
 
         String completeOperatorsOperandsPath = "";
-        for (String arg : args) {
-            completeOperatorsOperandsPath += arg + "/";
+        for (final String operatorOperand : operatorsOperands) {
+            completeOperatorsOperandsPath += operatorOperand + "/";
         }
 
-        String actualResult = given().urlEncodingEnabled(false)
+        final String actualResult = given().urlEncodingEnabled(false)
         .when()
         .get(completeOperatorsOperandsPath)
         .then()
