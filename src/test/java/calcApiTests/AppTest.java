@@ -17,7 +17,7 @@ import com.tngtech.java.junit.dataprovider.UseDataProvider;
 public class AppTest {
 
     @DataProvider
-    public static Object[][] positiveResultsOperatorsOperands() {
+    public static Object[][] resultsOperatorsOperands() {
         String errorText = "unsupported operation";
         return new Object[][] {
             // @formatter:off
@@ -92,8 +92,8 @@ public class AppTest {
     }
 
     @Test
-    @UseDataProvider("positiveResultsOperatorsOperands")
-    public void correctResultOfPlusOperators(String expectedResult, String... args) {
+    @UseDataProvider("resultsOperatorsOperands")
+    public void appTestMain(String expectedResult, String... args) {
 
         String completeOperatorsOperandsPath = "";
         for (String arg : args) {
